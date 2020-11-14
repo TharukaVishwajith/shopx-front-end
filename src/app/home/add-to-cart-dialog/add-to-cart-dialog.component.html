@@ -1,0 +1,31 @@
+<mat-dialog-content>
+  <p>
+    {{message}}
+  </p>
+  <mat-card class="dialog-message-content">
+    <mat-card-content>
+      <mat-form-field appearance="fill">
+        <mat-label>Type</mat-label>
+        <mat-select [(ngModel)]="selectedType" name="selectedType">
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{type.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>No of {{selectedType}}</mat-label>
+        <input matInput placeholder="" [(ngModel)]="qty">
+      </mat-form-field>
+      <p>Total Cost: {{totalCost}}</p>
+    </mat-card-content>
+
+
+  </mat-card>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+
+
+  <mat-divider></mat-divider>
+  <button mat-raised-button color="primary" (click)="calculatePrice()" tabindex="1">{{confirmButtonText}}</button>
+  <button mat-raised-button mat-dialog-close tabindex="-1">{{cancelButtonText}}</button>
+</mat-dialog-actions>
