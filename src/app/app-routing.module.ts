@@ -1,9 +1,13 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import {ItemListComponent} from './home/item-list/item-list.component';
 
-const routes: Routes = [{
-  path: '', redirectTo: '/login', pathMatch: 'full'
-}];
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full'
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
