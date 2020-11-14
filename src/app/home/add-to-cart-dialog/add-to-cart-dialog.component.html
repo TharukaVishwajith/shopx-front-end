@@ -16,6 +16,7 @@
         <mat-label>No of {{selectedType}}</mat-label>
         <input matInput placeholder="" [(ngModel)]="qty">
       </mat-form-field>
+      <p *ngIf="noOfCarton != null">{{noOfCarton }} Cartons and {{noOfUnits}} units</p>
       <p>Total Cost: {{totalCost}}</p>
     </mat-card-content>
 
