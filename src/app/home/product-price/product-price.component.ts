@@ -13,12 +13,14 @@ export class ProductPriceComponent implements OnInit {
   priceList: ProductPriceResponse[] = [];
   loading: boolean;
   displayedColumns: string[] = ['noOfCartons', 'noOfUnits', 'cost'];
+  productName: string;
 
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     const productId = this.router.url.split('/')[2];
     this.getProductPriceList(productId);
+    this.productName = localStorage.getItem('SELECTED_PRODUCT_NAME');
   }
 
   private getProductPriceList(request): void {

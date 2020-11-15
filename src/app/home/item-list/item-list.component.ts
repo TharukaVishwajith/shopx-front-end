@@ -4,6 +4,7 @@ import {PageEvent} from '@angular/material/paginator';
 import {ProductService} from '../../core/services/product.service';
 import {AddToCartDialogComponent} from '../add-to-cart-dialog/add-to-cart-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-item-list',
@@ -17,7 +18,10 @@ export class ItemListComponent implements OnInit {
   loading: boolean;
   displayedColumns: string[] = ['id', 'name', 'cartonCost', 'calculate'];
 
-  constructor(private productService: ProductService, private dialog: MatDialog) { }
+  constructor(private productService: ProductService,
+              private dialog: MatDialog,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getProducts({ page: "0", size: "10" });
@@ -55,6 +59,11 @@ export class ItemListComponent implements OnInit {
         }
       }
     });
+  }
+
+  goToProductPrice(id: number, name: string): void {
+    localStorage.setItem('SELECTED_PRODUCT_NAME', name);
+    this.router.navigate([id], { relativeTo: this.route });
   }
 }
 

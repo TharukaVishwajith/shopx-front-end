@@ -2,5 +2,9 @@ table {
   width: 100%;
 }
 .price-list-container{
-  padding: 40px;
+  padding: 1px 40px 40px 40px;
+}
+
+.price-list-title{
+  text-align: center;
 }
