@@ -5,9 +5,6 @@ import {ProductService} from '../../core/services/product.service';
 import {AddToCartDialogComponent} from '../add-to-cart-dialog/add-to-cart-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
-
-const ELEMENT_DATA: Product[] = [];
-
 @Component({
   selector: 'app-item-list',
   templateUrl: './item-list.component.html',
@@ -18,8 +15,7 @@ export class ItemListComponent implements OnInit {
   totalElements: number = 0;
   products: Product[] = [];
   loading: boolean;
-  displayedColumns: string[] = ['id', 'name', 'cartonCost', 'addToCart'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['id', 'name', 'cartonCost', 'calculate'];
 
   constructor(private productService: ProductService, private dialog: MatDialog) { }
 
@@ -50,8 +46,9 @@ export class ItemListComponent implements OnInit {
   openDialog(product: Product): void {
     const dialogRef = this.dialog.open(AddToCartDialogComponent, {
       data: {
-        message: 'Calculate Price for the product ' + product.name,
+        message: 'Calculate Price ',
         pid: product.id,
+        pname: product.name,
         buttonText: {
           ok: 'calculate',
           cancel: 'close'

@@ -9,7 +9,7 @@
 
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element">  <a routerLink="{{element.id}}">{{element.name}}</a> </td>
     </ng-container>
 
     <ng-container matColumnDef="cartonCost">
@@ -17,8 +17,8 @@
       <td mat-cell *matCellDef="let element"> {{element.cartonCost}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="addToCart">
-    <th mat-header-cell *matHeaderCellDef> Add To Cart </th>
+    <ng-container matColumnDef="calculate">
+    <th mat-header-cell *matHeaderCellDef> Calculate </th>
     <td mat-cell *matCellDef="let element">
       <button mat-mini-fab color="primary" aria-label="add to cart" (click)="openDialog(element)">
         <mat-icon>+</mat-icon>

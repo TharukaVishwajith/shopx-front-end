@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {ApiService} from './api.service';
 import {Observable} from 'rxjs/index';
 import {HttpParams} from '@angular/common/http';
-import {ProductPriceRequest} from '../models/ProductPriceRequest';
+import {ProductPriceRequest} from '../models/ProductPrice';
 
 @Injectable()
 export class ProductService {
@@ -19,4 +19,9 @@ export class ProductService {
   calculatePrice(productPriceRequest: ProductPriceRequest): Observable<any>{
     return this.apiService.post('/product/calculate-price' , productPriceRequest);
   }
+
+  retrivePriceList(productId: number): Observable<any>{
+    return this.apiService.get('/product/calculate-price-list?productId=' + productId);
+  }
+
 }

@@ -14,11 +14,12 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, NgModel} from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCardModule} from '@angular/material/card';
+import { ProductPriceComponent } from './product-price/product-price.component';
 
 
 
 @NgModule({
-  declarations: [ItemListComponent, AddToCartDialogComponent],
+  declarations: [ItemListComponent, AddToCartDialogComponent, ProductPriceComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,

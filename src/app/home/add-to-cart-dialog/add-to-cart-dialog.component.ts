@@ -1,6 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {ProductService} from '../../core/services/product.service';
+import {ProductPriceResponse} from '../../core/models/ProductPrice';
 
 interface Type {
   value: string;
@@ -17,9 +18,12 @@ export class AddToCartDialogComponent {
   message: string;
   confirmButtonText = 'Yes';
   cancelButtonText = 'Cancel';
+  pname = '';
 
   selectedType = 'UNIT';
   totalCost = 0;
+  noOfCarton = null;
+  noOfUnits = null;
   qty = 0;
   types: Type[] = [
     {value: 'UNIT', viewValue: 'unit'},
@@ -34,7 +38,7 @@ export class AddToCartDialogComponent {
     private dialogRef: MatDialogRef<AddToCartDialogComponent>, private productService: ProductService) {
     if (data){
       this.message = data.message || this.message;
-      this.message += data.pid;
+      this.pname = data.pname;
       if (data.buttonText) {
         this.confirmButtonText = data.buttonText.ok || this.confirmButtonText;
         this.cancelButtonText = data.buttonText.cancel || this.cancelButtonText;
@@ -49,13 +53,15 @@ export class AddToCartDialogComponent {
       qty: this.qty
     }).subscribe({
       complete: () => {},
-      error: (error) => {AddToCartDialogComponent.errorHandler(error)},
+      error: (error) => {AddToCartDialogComponent.errorHandler(error);},
       next: (res) => this.responseHandler(res)});
     // this.dialogRef.close(true);
   }
 
-  responseHandler(res): void {
-    this.totalCost = res;
+  responseHandler(res: ProductPriceResponse): void {
+    this.totalCost = res.cost;
+    this.noOfUnits = res.noOfUnits;
+    this.noOfCarton = res.noOfCartons;
   }
 
 

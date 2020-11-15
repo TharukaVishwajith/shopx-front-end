@@ -21,7 +21,7 @@ export class ApiService {
     return  throwError(error.error);
   }
 
-  get(path: string, params: HttpParams): Observable<any> {
+  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     this.tokenSetter(path);
     return this.http.get(`${environment.api_url}${path}`, {headers: this.headers, params: params })
       .pipe(catchError(this.formatErrors));
